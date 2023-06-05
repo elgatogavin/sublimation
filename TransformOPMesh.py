@@ -2,7 +2,7 @@ import csv
 
 # Define the old and new origins
 old_origin = [0, 0]
-new_origin = [55, -40.3]
+new_origin = [55, -75]
 
 # Open the CSV file containing the old points
 with open('u_mesh.csv', 'r') as f:

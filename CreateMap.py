@@ -29,12 +29,14 @@ def WarpImage_TPS(source,target,img):
 	return new_img, new_pts1, new_pts2
 
 def thin_plate_transform(x,y,offw,offh,imshape,shift_l=-0.05,shift_r=0.05,num_points=5,offsetMatrix=False):
-	rand_p=np.random.choice(x.size,num_points,replace=False)
+	rand_p=np.random.choice(374,num_points,replace=False)
 	movingPoints=np.zeros((1,num_points,2),dtype='float32')
 	fixedPoints=np.zeros((1,num_points,2),dtype='float32')
 
-	movingPoints[:,:,0]=x[rand_p]
-	movingPoints[:,:,1]=y[rand_p]
+	#print(rand_p)
+
+	movingPoints[:,:,0]=np.transpose(x[rand_p])
+	movingPoints[:,:,1]=np.transpose(y[rand_p])
 	fixedPoints[:,:,0]=movingPoints[:,:,0]+offw*(np.random.rand(num_points)*(shift_r-shift_l)+shift_l)
 	fixedPoints[:,:,1]=movingPoints[:,:,1]+offh*(np.random.rand(num_points)*(shift_r-shift_l)+shift_l)
 
@@ -63,7 +65,7 @@ print("Some Magic Stuff")
 
 Zp = matched_points_original.reshape(-1, 1, 2) # (x, y) in each row
 Zs = matched_points_distored.reshape(-1, 1, 2)
-im = cv2.imread('Grid4.tif')
+im = cv2.imread('Grid4_Back.jpg')
 
 # draw parallel grids
 #for y in range(0, im.shape[0], 10):
@@ -74,14 +76,16 @@ im = cv2.imread('Grid4.tif')
 new_im, new_pts1, new_pts2 = WarpImage_TPS(Zp, Zs, im)
 #new_pts1, new_pts2 = new_pts1.squeeze(), new_pts2.squeeze()
 #print(new_pts1, new_pts2)
-
-#new_xy = thin_plate_transform(x=Zp[:, 0], y=Zp[0, :], offw=3, offh=2, imshape=im.shape[0:2], num_points=4)
-
-
+#print(Zp[:,:,0])
+#print(Zp[:,:,1])
+#new_xy = thin_plate_transform(x=Zp[:, :,0], y=Zp[:, :,1], offw=3, offh=2, imshape=im.shape[0:2], num_points=4)
+#color_img = np.repeat(new_xy[:, :, :], 2, axis=2)
+#cv2.imwrite('output.jpg', color_img)
 cv2.imshow('w', im)
 cv2.waitKey(500)
-
-cv2.imwrite('outputimg.tif',new_im)
-
+#print(new_xy.shape)
+#print(im.shape)
+#print(color_img.shape)
+cv2.imwrite('output_back.jpg', new_im)
 cv2.imshow('w2', new_im)
 cv2.waitKey(0)

@@ -1,0 +1,6 @@
+numpy
+pandas
+scikit-learn
+opencv-contrib-python
+pywin32
+pythoncom
