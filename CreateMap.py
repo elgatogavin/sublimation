@@ -65,7 +65,7 @@ print("Some Magic Stuff")
 
 Zp = matched_points_original.reshape(-1, 1, 2) # (x, y) in each row
 Zs = matched_points_distored.reshape(-1, 1, 2)
-im = cv2.imread('Grid4_Back.jpg')
+im = cv2.imread('Bethesda_Back_V1.tif')
 
 # draw parallel grids
 #for y in range(0, im.shape[0], 10):
@@ -86,6 +86,6 @@ cv2.waitKey(500)
 #print(new_xy.shape)
 #print(im.shape)
 #print(color_img.shape)
-cv2.imwrite('output_back.jpg', new_im)
+cv2.imwrite('Bethesda_Back_V1_DEF_1.tif', new_im)
 cv2.imshow('w2', new_im)
 cv2.waitKey(0)

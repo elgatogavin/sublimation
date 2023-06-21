@@ -26,7 +26,7 @@ print("ScaleGrid")
 new_points = []
 for point in src_points:
     new_x = remap(point[0], 0, 110, 0, 5197)
-    new_y = remap(point[1],0,122,0, 5764)
+    new_y = remap(point[1],0,125,0, 5906)
     new_points.append([new_x, new_y])
 
 with open('grid_final.csv', 'w', newline='') as f:
