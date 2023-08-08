@@ -1,5 +1,7 @@
 import numpy as np
 import cv2
+import os
+os.getcwd()
 
 def WarpImage_TPS(source,target,img):
 	tps = cv2.createThinPlateSplineShapeTransformer()
@@ -65,7 +67,7 @@ print("Some Magic Stuff")
 
 Zp = matched_points_original.reshape(-1, 1, 2) # (x, y) in each row
 Zs = matched_points_distored.reshape(-1, 1, 2)
-im = cv2.imread('Bethesda_Back_V1.tif')
+im = cv2.imread('Sublimation_Starfield_Back_V3.tif')
 
 # draw parallel grids
 #for y in range(0, im.shape[0], 10):
@@ -86,6 +88,6 @@ cv2.waitKey(500)
 #print(new_xy.shape)
 #print(im.shape)
 #print(color_img.shape)
-cv2.imwrite('Bethesda_Back_V1_DEF_1.tif', new_im)
+cv2.imwrite('Sublimation_Starfield_Back_V3_DEF_1.tif', new_im)
 cv2.imshow('w2', new_im)
 cv2.waitKey(0)
